@@ -13,14 +13,14 @@ create table Producto(
 	Stock int NOT NULL,
 	PrecioCompra money NOT NULL,
 	PrecioVenta money NOT NULL,
-	FechaCompra Date NOT NULL
+	FechaCompra Datetime NOT NULL
 	
 );
 
 create table Venta(
 	IdVenta int IDENTITY(001,1) NOT NULL PRIMARY KEY,
 	cliente varchar(255),
-	fecha date NOT NULL
+	fecha Datetime NOT NULL
 );
 
 
