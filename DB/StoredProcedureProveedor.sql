@@ -5,8 +5,8 @@ create proc spinsertar_proveedor
 @telefono int
 
 as
-insert into Proveedor(IdProveedor,Nombre,telefono)
-values(@IdProveedor,@Nombre,@telefono);
+insert into Proveedor(Nombre,telefono)
+values(@Nombre,@telefono);
 go
 
 -- Procedimiento  Editar Proveedor
@@ -15,7 +15,7 @@ create proc speditar_proveedor
 @Nombre varchar(255),
 @telefono int
 as
-update Proveedor set IdProveedor=@IdProveedor,Nombre=@Nombre,telefono=@telefono
+update Proveedor set Nombre=@Nombre,telefono=@telefono
 where IdProveedor=@IdProveedor
 go
 
@@ -35,11 +35,13 @@ select * from Proveedor;
 go 
 
 --buscar productos like
-create proc spbuscar_proveedor
+create proc spbuscar_proveedores
 
-@IdProveedor int output
+@Nombre varchar(255)
 
 as
 
-select * from proveedor where IdProveedor like @IdProveedor ;
+select * from proveedor 
+where Nombre like @Nombre + '%';
 go
+

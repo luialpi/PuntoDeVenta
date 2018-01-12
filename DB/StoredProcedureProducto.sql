@@ -1,3 +1,4 @@
+
 -- Procedimiento  Insertar Producto
 create proc spinsertar_Producto
 @IdProducto int output,
@@ -10,21 +11,21 @@ create proc spinsertar_Producto
 
 as
 
-insert into Producto(IdProducto,IdProveedor,Nombre,Stock,PrecioCompra,PrecioVenta,FechaCompra)
-values(@IdProducto,@IdProveedor,@Nombre,@Stock,@PrecioCompra,@PrecioVenta,@FechaCompra)
+insert into Producto(IdProveedor,Nombre,Stock,PrecioCompra,PrecioVenta,FechaCompra)
+values(@IdProveedor,@Nombre,@Stock,@PrecioCompra,@PrecioVenta,@FechaCompra)
 go
 
 -- Procedimiento  Editar producto
 create proc speditar_producto
 @IdProducto int output,
-@IdProveedor int output,
+@IdProveedor int,
 @Nombre varchar(255),
 @Stock int,
 @PrecioCompra money,
 @PrecioVenta money,
 @FechaCompra date
 as
-update Producto set IdProducto=@IdProducto,IdProveedor=@IdProveedor,Nombre=@Nombre,Stock=@Stock,PrecioCompra=@PrecioCompra,PrecioVenta=@PrecioVenta,FechaCompra=@FechaCompra
+update Producto set IdProveedor=@IdProveedor,Nombre=@Nombre,Stock=@Stock,PrecioCompra=@PrecioCompra,PrecioVenta=@PrecioVenta,FechaCompra=@FechaCompra
 where IdProducto=@IdProducto
 go
 
@@ -40,15 +41,16 @@ go
 create proc spmostrar_productos
 as
 
-select * from producto;
+select * from Producto;
 go 
 
 --buscar productos like
 create proc spbuscar_productos
 
-@IdProducto int output
+@Nombre varchar(255)
 
 as
 
-select * from producto where IdProducto like @IdProducto ;
+select * from Producto 
+where Nombre like @Nombre + '%'
 go
