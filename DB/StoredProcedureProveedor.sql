@@ -21,8 +21,25 @@ go
 
 -- Procedimiento  Eliminar proveedor
 create proc speliminar_proveedor
-@IdProducto int
+@IdProveedor int
 as
 delete from Proveedor
 where IdProveedor=@IdProveedor
+go
+
+--Mostrar todos los proveedores
+create proc spmostrar_proveedores
+as
+
+select * from Proveedor;
+go 
+
+--buscar productos like
+create proc spbuscar_proveedor
+
+@IdProveedor int output
+
+as
+
+select * from proveedor where IdProveedor like @IdProveedor ;
 go

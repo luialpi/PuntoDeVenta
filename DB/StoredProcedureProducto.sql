@@ -35,3 +35,20 @@ as
 delete from Producto
 where IdProducto=@IdProducto
 go
+
+--Mostrar todos los productos
+create proc spmostrar_productos
+as
+
+select * from producto;
+go 
+
+--buscar productos like
+create proc spbuscar_productos
+
+@IdProducto int output
+
+as
+
+select * from producto where IdProducto like @IdProducto ;
+go
